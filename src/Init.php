@@ -349,6 +349,9 @@ $di->setter['Ushahidi\Core\Traits\PermissionAccess']['setRolesEnabled'] = $di->l
 $di->setter['Ushahidi\Core\Traits\WebhookAccess']['setEnabled'] = $di->lazyGet('webhooks.enabled');
 $di->setter['Ushahidi\Core\Traits\DataImportAccess']['setEnabled'] = $di->lazyGet('data-import.enabled');
 
+$di->setter['Ushahidi\Core\Entity\TranslationRepositoryTrait']['setTranslationRepository']
+	= $di->lazyGet('repository.translation');
+
 // Tools
 $di->set('tool.signer', $di->lazyNew('Ushahidi\Core\Tool\Signer'));
 $di->set('tool.uploader', $di->lazyNew('Ushahidi\Core\Tool\Uploader'));

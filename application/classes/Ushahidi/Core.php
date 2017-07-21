@@ -415,6 +415,10 @@ abstract class Ushahidi_Core {
 		$di->set('repository.oauth.scope', $di->lazyNew('OAuth2_Storage_Scope'));
 		$di->set('repository.posts_export', $di->lazyNew('Ushahidi_Repository_Post_Export'));
 
+		$di->set('repository.translation', $di->lazyNew('Ushahidi_Repository_Translation', [
+			'db' => $di->lazyGet('kohana.db')
+		]));
+
 		$di->setter['Ushahidi_Repository_User']['setHasher'] = $di->lazyGet('tool.hasher.password');
 
 		// Repository parameters
