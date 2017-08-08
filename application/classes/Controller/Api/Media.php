@@ -11,6 +11,11 @@
 class Controller_Api_Media extends Ushahidi_Rest
 {
 
+	protected $_open_methods = array
+	(
+		Request::GET
+	);
+
 	/**
 	 * @var array List of HTTP methods which support body content
 	 */
@@ -22,18 +27,6 @@ class Controller_Api_Media extends Ushahidi_Rest
 	protected function _scope()
 	{
 		return 'media';
-	}
-
-	protected function _is_auth_required()
-	{
-		if (parent::_is_auth_required())
-		{
-			// Completely anonymous access is allowed for (some) GET requests.
-			// Further checks are made down the stack.
-			return ($this->request->method() !== Request::GET);
-		}
-
-		return FALSE;
 	}
 
 	/**

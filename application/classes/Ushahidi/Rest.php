@@ -61,6 +61,11 @@ abstract class Ushahidi_Rest extends Controller {
 	);
 
 	/**
+	* A list of methods where clients can bypass authentication.
+	**/
+	protected $_open_methods = array();
+
+	/**
 	 * @var Usecase
 	 */
 	protected $_usecase;
@@ -231,14 +236,12 @@ abstract class Ushahidi_Rest extends Controller {
 
 	/**
 	 * Determines if this request can skip the authorization check.
-	 *
+	 * - Auth is not required for the OPTIONS method, because headers are not present in OPTIONS requests. ;)
 	 * @return bool
 	 */
 	protected function _is_auth_required()
 	{
-		// Auth is not required for the OPTIONS method, because headers are
-		// not present in OPTIONS requests. ;)
-		return ($this->request->method() !== Request::OPTIONS);
+		return $this->request->method() !== Request::OPTIONS && !in_array($this->request->method(), $this->_open_methods);
 	}
 
 	/**

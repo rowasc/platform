@@ -11,6 +11,11 @@
 
 class Controller_Api_Config extends Ushahidi_Rest {
 
+	protected $_open_methods = array
+	(
+		Request::GET
+	);
+
 	protected $_action_map = array
 	(
 		Http_Request::GET     => 'get',
@@ -21,16 +26,5 @@ class Controller_Api_Config extends Ushahidi_Rest {
 	protected function _scope()
 	{
 		return 'config';
-	}
-
-	protected function _is_auth_required()
-	{
-		if (parent::_is_auth_required())
-		{
-			// Completely anonymous access is allowed for (some) GET requests.
-			// Further checks are made down the stack.
-			return ($this->request->method() !== Request::GET);
-		}
-		return FALSE;
 	}
 }

@@ -11,6 +11,15 @@
 
 class Controller_Api_Index extends Ushahidi_Rest {
 
+	protected $_open_methods = array
+	(
+		Request::GET,
+		Request::PUT,
+		Request::POST,
+		Request::DELETE,
+		Request::HEAD
+	);
+
 	/**
 	 * @var array Map of HTTP methods -> actions
 	 */
@@ -23,11 +32,6 @@ class Controller_Api_Index extends Ushahidi_Rest {
 	protected function _scope()
 	{
 		return null;
-	}
-
-	protected function _is_auth_required()
-	{
-		return FALSE;
 	}
 
 	/**

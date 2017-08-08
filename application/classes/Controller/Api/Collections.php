@@ -11,6 +11,11 @@
 
 class Controller_Api_Collections extends Ushahidi_Rest {
 
+	protected $_open_methods = array
+	(
+		Request::GET
+	);
+
 	protected function _scope()
 	{
 		return 'sets';
@@ -19,16 +24,5 @@ class Controller_Api_Collections extends Ushahidi_Rest {
 	protected function _resource()
 	{
 		return 'sets';
-	}
-
-	protected function _is_auth_required()
-	{
-		if (parent::_is_auth_required())
-		{
-			// Completely anonymous access is allowed for (some) GET requests.
-			// Further checks are made down the stack.
-			return ($this->request->method() !== Request::GET);
-		}
-		return FALSE;
 	}
 }
